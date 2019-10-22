@@ -177,12 +177,12 @@ public class MainActivity extends AppCompatActivity {
             byte[] jdata = baos.toByteArray();
             Bitmap bitmap = BitmapFactory.decodeByteArray(jdata, 0, jdata.length);
             Bitmap rotateBitmap = RotateBitmap(bitmap, 90);
-            // create bitmap image
-            final String inputText = "test word selva";
-            final Bitmap bmp = getTextImage(inputText, 640, 480);
-            Log.d(TAG, "bitmap" + bmp);
-            String recognizedText = OCREngineImp.get_recognised_text(bmp);
-            Log.d("RecognisedText", recognizedText);
+//            // create bitmap image
+//            final String inputText = "test word selva";
+//            final Bitmap bmp = getTextImage(inputText, 640, 480);
+//            Log.d(TAG, "bitmap" + bmp);
+//            String recognizedText = OCREngineImp.get_recognised_text(bmp);
+//            Log.d("RecognisedText", recognizedText);
 
             bitmap.recycle();
             baos.reset();
@@ -255,6 +255,18 @@ public class MainActivity extends AppCompatActivity {
         } else {
             Log.e(TAG,"already exists" + fullpath);
             OCREngineImp.ocrEngine(lang, DATA_PATH);
+
+            try {
+                InputStream bitmap=getAssets().open("testImage_1_1.png");
+                Bitmap bit = BitmapFactory.decodeStream(bitmap);
+                // get recognised text
+                String recognizedText = OCREngineImp.get_recognised_text(bit);
+                Log.d("RecognisedText", recognizedText);
+
+            } catch (IOException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            }
 
             final String inputText = "test words selva";
             final Bitmap bmp = getTextImage(inputText, 640, 480);
