@@ -2,8 +2,10 @@ package com.example.tesseracttest;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -137,15 +139,25 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         //send bitmap
-        final String inputText = "test recognition ";
+        final String inputText = "test recognition";
         final Bitmap bmp = getTextImage(inputText, 640, 480);
         Log.d("TesseractTest", "bitmap" + bmp);
 
-        // get recognised text
-        String recognizedText = OCREngineImp.engine(lang, DATA_PATH, bmp);
-        Log.d("RecognisedText", recognizedText);
+        try {
+            InputStream bitmap=getAssets().open("testImage_1_1.png");
+            Bitmap bit = BitmapFactory.decodeStream(bitmap);
+            // get recognised text
+            String recognizedText = OCREngineImp.engine(lang, DATA_PATH, bit);
+            Log.d("RecognisedText", recognizedText);
 
-        TextView recognisedText = (TextView) findViewById(R.id.recognisedText);
-        recognisedText.setText(recognizedText);
+            TextView recognisedText = (TextView) findViewById(R.id.recognisedText);
+            recognisedText.setText(recognizedText);
+
+        } catch (IOException e1) {
+            // TODO Auto-generated catch block
+            e1.printStackTrace();
+        }
+
+
     }
 }
