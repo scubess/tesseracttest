@@ -9,11 +9,19 @@ extern "C" {
 #endif
 /*
  * Class:     com_example_tesseracttest_OCREngineImp
+ * Method:    engine
+ * Signature: (Ljava/lang/String;Ljava/lang/String;)V
+ */
+JNIEXPORT void JNICALL Java_com_example_tesseracttest_OCREngineImp_engine
+  (JNIEnv *, jclass, jstring, jstring);
+
+/*
+ * Class:     com_example_tesseracttest_OCREngineImp
  * Method:    nativeReadBitmap
  * Signature: (Landroid/graphics/Bitmap;)J
  */
-JNIEXPORT jstring JNICALL Java_com_example_tesseracttest_OCREngineImp_recognition
-    (JNIEnv *, jobject, jstring, jstring, jobject);
+JNIEXPORT jstring JNICALL Java_com_example_tesseracttest_OCREngineImp_nativeReadBitmap
+  (JNIEnv *, jobject, jobject);
 #ifdef __cplusplus
 }
 #endif

@@ -21,19 +21,16 @@ using std::string;
 extern "C" {
 #endif
          jstring regText;
+         tesseract::TessBaseAPI *apiTest = new tesseract::TessBaseAPI();
 JNIEXPORT
 
-jstring JNICALL Java_com_example_tesseracttest_OCREngineImp_recognition(JNIEnv *env, jobject engineObj, jstring language, jstring dataPath, jobject bitmap) {
-        jboolean isCopy;
-        // get tessdata path, Language path
-
+void JNICALL Java_com_example_tesseracttest_OCREngineImp_engine (JNIEnv *env, jclass clazz, jstring language, jstring dataPath) {
+    jboolean isCopy;
         string tessPath = (env)->GetStringUTFChars(dataPath, &isCopy);
         string lang = (env)->GetStringUTFChars(language, &isCopy);
-        tesseract::TessBaseAPI *apiTest = new tesseract::TessBaseAPI();
         const char *c_dir = env->GetStringUTFChars(dataPath, NULL);
         const char *c_lang = env->GetStringUTFChars(language, NULL);
 
-        syslog(LOG_CRIT, "TesseractVersion:%s", apiTest->Version());
         int returnValue =  apiTest->Init(c_dir, c_lang);
         if (returnValue) {
             syslog(LOG_CRIT, "could not initialise tesseract return value %d: datapath: %s, language: %s", returnValue, c_dir, c_lang);
@@ -41,7 +38,10 @@ jstring JNICALL Java_com_example_tesseracttest_OCREngineImp_recognition(JNIEnv *
              syslog(LOG_CRIT,"Initialized Tesseract API with language=%s, TesseractVersion=%s",lang.c_str(), apiTest->Version());
         }
 
-         l_int32 w, h, d;
+}
+
+jstring JNICALL Java_com_example_tesseracttest_OCREngineImp_nativeReadBitmap (JNIEnv *env, jobject engineObj, jobject bitmap) {
+l_int32 w, h, d;
             AndroidBitmapInfo info;
             void* pixels;
             int ret;
@@ -95,14 +95,15 @@ jstring JNICALL Java_com_example_tesseracttest_OCREngineImp_recognition(JNIEnv *
                     }
 
                     delete [] outText;
-                    apiTest->End();
+                    //apiTest->End();
+                    apiTest->Clear();
                     pixDestroy(&pixd);
                     pixDestroy(&pixds);
                 } catch (exception &ecx) {
                     syslog(LOG_CRIT, "Engine exception %s", ecx.what());
                 }
             return regText;
-      }
+}
 #ifdef __cplusplus
 }
 #endif

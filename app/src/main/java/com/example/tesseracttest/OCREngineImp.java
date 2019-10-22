@@ -1,17 +1,20 @@
 package com.example.tesseracttest;
 
 import android.graphics.Bitmap;
+import android.util.Log;
 
 public class OCREngineImp {
 
-    public static String engine(String language, String tessdatPath, Bitmap bitmap) {
-        return recognition(language, tessdatPath, bitmap);
+    public static void ocrEngine(String language, String tessdatPath) {
+        engine(language, tessdatPath);
     }
 
-    private static native String recognition(String language, String dataPath, Bitmap bmp);
-
-    /*public static String get_recognised_text(Bitmap  bitmap) {
+    public static String get_recognised_text(Bitmap  bitmap) {
+        Log.d("Textout: ", nativeReadBitmap(bitmap));
         return nativeReadBitmap(bitmap);
     }
-    private static native String nativeReadBitmap(Bitmap bitmap); */
+
+    private static native void engine(String language, String dataPath);
+
+    private static native String nativeReadBitmap(Bitmap bitmap);
 }

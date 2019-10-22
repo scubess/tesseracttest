@@ -1,47 +1,269 @@
 package com.example.tesseracttest;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.ImageFormat;
+import android.graphics.Matrix;
 import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.YuvImage;
+import android.hardware.Camera;
 import android.os.Bundle;
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Environment;
 import android.util.Log;
-import android.widget.TextView;
+import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.LinearLayout;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-
 public class MainActivity extends AppCompatActivity {
 
-    private static final String DATA_PATH = Environment.getExternalStorageDirectory().toString() + "/tesseracttest/tessdata/";
-    private static final String lang = "eng";
-    private static final String TESSDATA = "tessdata";
-    private static final String TAG = "java-wrapper";
+    private Camera mCamera;
+    private CameraPreview mPreview;
+    private Context myContext;
+    private LinearLayout cameraPreview;
+    private boolean cameraFront = true;
+    public static Bitmap bitmap;
 
     static {
         System.loadLibrary("tesseract-test");
     }
 
+    private static final String TESSDATA = "tessdata";
+    private static final String DATA_PATH = Environment.getExternalStorageDirectory().toString() + "/tesseracttest/tessdata/";
+    private static final String TAG = "java-wrapper";
+    private static final String lang = "eng";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        startEngines();
 
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        myContext = this;
+        startTesseract();
+        mCamera = Camera.open();
+        mCamera.setDisplayOrientation(90);
+        cameraPreview = (LinearLayout) findViewById(R.id.cPreview);
+        mPreview = new CameraPreview(myContext, mCamera);
+        cameraPreview.addView(mPreview);
+
+        int camerasNumber = Camera.getNumberOfCameras();
+        if (camerasNumber > 1) {
+            releaseCamera();
+            chooseCamera();
+        } else {
+
+        }
+        mCamera.setPreviewCallback(previewCallback);
+        mCamera.startPreview();
 
     }
-    public void startEngines() {
+
+    private int findFrontFacingCamera() {
+
+        int cameraId = -1;
+        // Search for the front facing camera
+        int numberOfCameras = Camera.getNumberOfCameras();
+        for (int i = 0; i < numberOfCameras; i++) {
+            Camera.CameraInfo info = new Camera.CameraInfo();
+            Camera.getCameraInfo(i, info);
+            if (info.facing == Camera.CameraInfo.CAMERA_FACING_FRONT) {
+                cameraId = i;
+                cameraFront = true;
+                break;
+            }
+        }
+        return cameraId;
+
+    }
+
+    private int findBackFacingCamera() {
+        int cameraId = -1;
+        //Search for the back facing camera
+        //get the number of cameras
+        int numberOfCameras = Camera.getNumberOfCameras();
+        //for every camera check
+        for (int i = 0; i < numberOfCameras; i++) {
+            Camera.CameraInfo info = new Camera.CameraInfo();
+            Camera.getCameraInfo(i, info);
+            if (info.facing == Camera.CameraInfo.CAMERA_FACING_BACK) {
+                cameraId = i;
+                cameraFront = false;
+                break;
+
+            }
+
+        }
+        return cameraId;
+    }
+
+    public void onResume() {
+
+        super.onResume();
+        if (mCamera == null) {
+            mCamera = Camera.open();
+            mCamera.setDisplayOrientation(90);
+            mPreview.refreshCamera(mCamera);
+            Log.d("nu", "null");
+        } else {
+            Log.d("nu", "no null");
+        }
+
+    }
+
+    public void chooseCamera() {
+        //if the camera preview is the front
+        if (cameraFront) {
+            int cameraId = findBackFacingCamera();
+            if (cameraId >= 0) {
+                //open the backFacingCamera
+                //set a picture callback
+                //refresh the preview
+
+                mCamera = Camera.open(cameraId);
+                mCamera.setDisplayOrientation(90);
+                mPreview.refreshCamera(mCamera);
+            }
+        } else {
+            int cameraId = findFrontFacingCamera();
+            if (cameraId >= 0) {
+                //open the backFacingCamera
+                //set a picture callback
+                //refresh the preview
+                mCamera = Camera.open(cameraId);
+                mCamera.setDisplayOrientation(90);
+                mPreview.refreshCamera(mCamera);
+            }
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        //when on Pause, release camera in order to be used from other applications
+        releaseCamera();
+    }
+
+    private void releaseCamera() {
+        // stop and release camera
+        if (mCamera != null) {
+            mCamera.stopPreview();
+            mCamera.setPreviewCallback(null);
+            mCamera.release();
+            mCamera = null;
+        }
+    }
+
+    private Camera.PreviewCallback previewCallback = new Camera.PreviewCallback() {
+        @Override
+        public void onPreviewFrame(byte[] data, Camera camera) {
+            Camera.Size previewSize = camera.getParameters().getPreviewSize();
+            YuvImage yuvImage = new YuvImage(data, ImageFormat.NV21, previewSize.width, previewSize.height, null);
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            yuvImage.compressToJpeg(new Rect(0, 0, previewSize.width, previewSize.height), 80, baos);
+            byte[] jdata = baos.toByteArray();
+            Bitmap bitmap = BitmapFactory.decodeByteArray(jdata, 0, jdata.length);
+            Bitmap rotateBitmap = RotateBitmap(bitmap, 90);
+            // create bitmap image
+            final String inputText = "test word selva";
+            final Bitmap bmp = getTextImage(inputText, 640, 480);
+            Log.d(TAG, "bitmap" + bmp);
+            String recognizedText = OCREngineImp.get_recognised_text(bmp);
+            Log.d("RecognisedText", recognizedText);
+
+            bitmap.recycle();
+            baos.reset();
+
+        }
+    };
+
+    public static Bitmap RotateBitmap(Bitmap source, float angle) {
+        Matrix matrix = new Matrix();
+        matrix.postRotate(angle);
+        return Bitmap.createBitmap(source, 0, 0, source.getWidth(), source.getHeight(), matrix, true);
+    }
+
+
+    public void startTesseract() {
         prepareTessData();
+    }
+
+    private void prepareTessData() {
+        try {
+            prepareDirectory(DATA_PATH + TESSDATA);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void prepareDirectory(String path) {
+        File dir = new File(path);
+        if (!dir.exists()) {
+            if (!dir.mkdirs()) {
+                Log.e(TAG, "Create of directory" + path + " Failed, check the android manifest has permission to write to external storage");
+            }
+        } else {
+            Log.i(TAG, "Created Directory " + path);
+        }
+
+        try {
+            Log.d(TAG, "copyTessDataFiles: " + getAssets().list(path));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        copyTessDataFiles(TESSDATA);
+    }
+
+    private void copyTessDataFiles(String path) {
+
+        String fullpath = DATA_PATH + lang + ".traineddata";
+        Log.d("Fullpath", fullpath);
+        File file = new File(fullpath);
+
+        if (!(file.exists())) {
+            try {
+                AssetManager assetManager = getAssets();
+                InputStream in = assetManager.open("tessdata/" + lang + ".traineddata");
+                OutputStream out = new FileOutputStream(DATA_PATH + "tessdata/" + lang + ".traineddata");
+                // Transfer bytes from in to out
+                byte[] buf = new byte[1024];
+                int len;
+                while ((len = in.read(buf)) > 0) {
+                    out.write(buf, 0, len);
+                }
+                in.close();
+
+                out.close();
+
+                Log.v(TAG, "Copied " + lang + " traineddata");
+            } catch (IOException e) {
+                Log.e(TAG, "Was unable to copy " + lang + " traineddata " + e.toString());
+            }
+        } else {
+            Log.e(TAG,"already exists" + fullpath);
+            OCREngineImp.ocrEngine(lang, DATA_PATH);
+
+            final String inputText = "test words selva";
+            final Bitmap bmp = getTextImage(inputText, 640, 480);
+            Log.d(TAG, "bitmap" + bmp);
+
+            String recognizedText = OCREngineImp.get_recognised_text(bmp);
+            Log.d("RecognisedText", recognizedText);
+
+        }
     }
     private static Bitmap getTextImage(String text, int width, int height) {
         final Bitmap bmp = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
@@ -52,6 +274,7 @@ public class MainActivity extends AppCompatActivity {
 
         return bmp;
     }
+
     /**
      * Draws text (with newlines) centered onto the canvas. If the text does not fit horizontally,
      * it will be cut off. If the text does not fit vertically, the start of the text will be at
@@ -85,79 +308,5 @@ public class MainActivity extends AppCompatActivity {
             canvas.drawText(line, x, y, paint);
             y += lineSize;
         }
-    }
-    private void prepareTessData() {
-        try {
-            prepareDirectory(Environment.getExternalStorageDirectory() + "/tesseracttest/" + TESSDATA);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void prepareDirectory(String path) {
-        File dir = new File(path);
-        if (!dir.exists()) {
-            if (!dir.mkdirs()) {
-                Log.e(TAG, "Create of directory" + path + " Failed, check the android manifest has permission to write to external storage");
-            }
-        } else {
-            Log.i(TAG, "Created Directory " + path);
-        }
-
-        try {
-            Log.d(TAG, "copyTessDataFiles: " + getAssets().list(path));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        copyTessDataFiles();
-    }
-
-    private void copyTessDataFiles() {
-
-        String fullpath = DATA_PATH + lang + ".traineddata";
-        Log.d("Fullpath", fullpath);
-
-        if (!(new File(DATA_PATH + lang + ".traineddata")).exists()) {
-            try {
-                AssetManager assetManager = getAssets();
-                InputStream in = assetManager.open("tessdata/" + lang + ".traineddata");
-                OutputStream out = new FileOutputStream(DATA_PATH  + "/" + lang + ".traineddata");
-                // Transfer bytes from in to out
-                byte[] buf = new byte[1024];
-                int len;
-                while ((len = in.read(buf)) > 0) {
-                    out.write(buf, 0, len);
-                }
-                in.close();
-
-                out.close();
-
-                Log.v(TAG, "Copied " + lang + " traineddata");
-
-            } catch (IOException e) {
-                Log.e(TAG, "Was unable to copy " + lang + " traineddata " + e.toString());
-            }
-        }
-        //send bitmap
-        final String inputText = "test recognition";
-        final Bitmap bmp = getTextImage(inputText, 640, 480);
-        Log.d("TesseractTest", "bitmap" + bmp);
-
-        try {
-            InputStream bitmap=getAssets().open("testImage_1_1.png");
-            Bitmap bit = BitmapFactory.decodeStream(bitmap);
-            // get recognised text
-            String recognizedText = OCREngineImp.engine(lang, DATA_PATH, bit);
-            Log.d("RecognisedText", recognizedText);
-
-            TextView recognisedText = (TextView) findViewById(R.id.recognisedText);
-            recognisedText.setText(recognizedText);
-
-        } catch (IOException e1) {
-            // TODO Auto-generated catch block
-            e1.printStackTrace();
-        }
-
-
     }
 }
