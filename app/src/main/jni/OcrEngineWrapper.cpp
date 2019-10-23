@@ -41,68 +41,90 @@ void JNICALL Java_com_example_tesseracttest_OCREngineImp_engine (JNIEnv *env, jc
 }
 
 jstring JNICALL Java_com_example_tesseracttest_OCREngineImp_nativeReadBitmap (JNIEnv *env, jobject engineObj, jobject bitmap) {
-l_int32 w, h, d;
-            AndroidBitmapInfo info;
-            void* pixels;
-            int ret;
+ l_int32 w, h, d;
+    AndroidBitmapInfo info;
+    void* pixels;
+    int ret;
 
-            syslog(LOG_CRIT, "received bitmap");
-            regText = (*env).NewStringUTF("this is not actual test recognised");
+    jclass clazz = (*env).FindClass("java/util/ArrayList");
+    jobject newSuggestionObj = (*env).NewObject(clazz, (*env).GetMethodID(clazz, "<init>", "()V"));
+    jmethodID addSuggestionObj = env->GetMethodID(clazz, "add", "(Ljava/lang/Object;)Z");
+    regText = (*env).NewStringUTF("");
 
-                PIX *pixd = pixCreate(info.width, info.height, 32);
-                l_uint32 width = pixGetWidth(pixd);
-                l_uint32 height = pixGetHeight(pixd);
-                l_uint32 depth = pixGetDepth(pixd);
-                l_uint32 *data = pixGetData(pixd);
-                size_t size = 4 * pixGetWpl(pixd) * pixGetHeight(pixd);
+    if ((ret = AndroidBitmap_getInfo(env, bitmap, &info)) < 0) {
+        //syslog(LOG_CRIT, "AndroidBitmap_getInfo() failed! error=%d", ret);
+         (*env).ThrowNew((*env).FindClass("java/lang/Exception"), "AndroidBitmap_getInfo() failed.");
+        return NULL;
+    }
 
-                if (width <= 0 || height <= 0) {
-                    //syslog(LOG_CRIT, "Pix width and height must be > 0");
-                    (*env).ThrowNew((*env).FindClass("java/lang/Exception"), "Pix width and height must be > 0");
-                    return NULL;
-                } else if(depth != 1 && depth != 2 && depth != 4 && depth != 8 && depth != 16 && depth != 24 && depth != 32) {
-                    //syslog(LOG_CRIT, "Depth must be one of 1, 2, 4, 8, 16, or 32");
-                    (*env).ThrowNew((*env).FindClass("java/lang/Exception"), "Depth must be one of 1, 2, 4, 8, 16, or 32");
-                    return NULL;
-                }
+    if (info.format != ANDROID_BITMAP_FORMAT_RGBA_8888) {
+        //syslog(LOG_CRIT, "Bitmap format is not RGBA_8888=%d", ret);
+        (*env).ThrowNew((*env).FindClass("java/lang/Exception"), "Bitmap format is not RGBA_8888.");
+        return NULL;
+    }
 
-                l_uint32 *src = (l_uint32* ) pixels;
-                l_int32 srcWpl = (info.stride / 4);
-                l_uint32 *dst = pixGetData(pixd);
-                l_int32 dstWpl = pixGetWpl(pixd);
-                memcpy(dst, src, 4 * (info.width * info.height));
-                AndroidBitmap_unlockPixels(env, bitmap);
+    if ((ret = AndroidBitmap_lockPixels(env, bitmap, &pixels)) < 0) {
+          //syslog(LOG_CRIT, "AndroidBitmap_lockPixels() failed! error=%d", ret);
+         (*env).ThrowNew((*env).FindClass("java/lang/Exception"), "AndroidBitmap_lockPixels() failed!.");
+        return NULL;
+    }
 
-                PIX *pixs = pixd;
+    PIX *pixd = pixCreate(info.width, info.height, 32);
+    l_uint32 width = pixGetWidth(pixd);
+    l_uint32 height = pixGetHeight(pixd);
+    l_uint32 depth = pixGetDepth(pixd);
+    l_uint32 *data = pixGetData(pixd);
+    size_t size = 4 * pixGetWpl(pixd) * pixGetHeight(pixd);
 
-                PIX *pixds = pixClone(pixs);
+    if (width <= 0 || height <= 0) {
+        //syslog(LOG_CRIT, "Pix width and height must be > 0");
+        (*env).ThrowNew((*env).FindClass("java/lang/Exception"), "Pix width and height must be > 0");
+        return NULL;
+    } else if(depth != 1 && depth != 2 && depth != 4 && depth != 8 && depth != 16 && depth != 24 && depth != 32) {
+        //syslog(LOG_CRIT, "Depth must be one of 1, 2, 4, 8, 16, or 32");
+        (*env).ThrowNew((*env).FindClass("java/lang/Exception"), "Depth must be one of 1, 2, 4, 8, 16, or 32");
+        return NULL;
+    }
 
-                if (pixds) {
-                     l_int32 width = pixGetWidth(pixds);
-                     l_int32 height = pixGetHeight(pixds);
-                }
+    l_uint32 *src = (l_uint32* ) pixels;
+    l_int32 srcWpl = (info.stride / 4);
+    l_uint32 *dst = pixGetData(pixd);
+    l_int32 dstWpl = pixGetWpl(pixd);
+    memcpy(dst, src, 4 * (info.width * info.height));
+    AndroidBitmap_unlockPixels(env, bitmap);
 
-                try {
-                    char *outText;
-                    //syslog(LOG_CRIT, "TesseractVersion count 100: %s", apiTest->Version());
-                    apiTest->SetImage(pixds);
-                    apiTest->Recognize(nullptr);
-                    outText = apiTest->GetUTF8Text();
-                    syslog(LOG_CRIT, "outtext %s", outText);
-                    if ((*env).NewStringUTF(outText)) {
-                        regText =  (*env).NewStringUTF(outText);
-                         syslog(LOG_CRIT, "UTF reconised text : %s", outText);
-                    }
+    PIX *pixs = pixd;
 
-                    delete [] outText;
-                    //apiTest->End();
-                    apiTest->Clear();
-                    pixDestroy(&pixd);
-                    pixDestroy(&pixds);
-                } catch (exception &ecx) {
-                    syslog(LOG_CRIT, "Engine exception %s", ecx.what());
-                }
+    PIX *pixds = pixClone(pixs);
+
+    if (pixds) {
+         l_int32 width = pixGetWidth(pixds);
+         l_int32 height = pixGetHeight(pixds);
+    }
+        try {
+            char *outText;
+            regText = (*env).NewStringUTF("");
+            apiTest->SetImage(pixds);
+            syslog(LOG_CRIT, "Set Image");
+
+            try {
+                outText = apiTest->GetUTF8Text();
+            }  catch (exception &ecx) {
+                syslog(LOG_CRIT, "GetUTF8Text crash %s", ecx.what());
+                (*env).ThrowNew((*env).FindClass("java/lang/Exception"), "GetUTF8Text crash");
+            }
+
+            syslog(LOG_CRIT, "regText: %s", outText);
+            regText = (*env).NewStringUTF(outText);
+            pixDestroy(&pixd);
+            pixDestroy(&pixds);
             return regText;
+            } catch (exception &ecx) {
+                syslog(LOG_CRIT, "Engine exception %s", ecx.what());
+                (*env).ThrowNew((*env).FindClass("java/lang/Exception"), "Engine exception");
+            }
+
+    return regText;
 }
 #ifdef __cplusplus
 }

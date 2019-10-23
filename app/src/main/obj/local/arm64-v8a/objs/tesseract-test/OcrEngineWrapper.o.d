@@ -1,5 +1,5 @@
-/Users/lshiva/Current/TesseractTest/app/src/main/obj/local/arm64-v8a/objs/tesseract-test/OcrEngineWrapper.o: \
-  /Users/lshiva/Current/TesseractTest/app/src/main/jni/OcrEngineWrapper.cpp \
+/Users/lshiva/Current/testandroid/tesseracttest/app/src/main/obj/local/arm64-v8a/objs/tesseract-test/OcrEngineWrapper.o: \
+  /Users/lshiva/Current/testandroid/tesseracttest/app/src/main/jni/OcrEngineWrapper.cpp \
   /Users/lshiva/Library/Android/sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/include/iostream \
   /Users/lshiva/Library/Android/sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/include/__config \
   /Users/lshiva/Library/Android/sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/include/ios \
@@ -66,54 +66,54 @@
   /Users/lshiva/Library/Android/sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/include/__bsd_locale_fallbacks.h \
   /Users/lshiva/Library/Android/sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/include/bitset \
   /Users/lshiva/Library/Android/sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/include/__bit_reference \
-  /Users/lshiva/Current/TesseractTest/app/src/main/jni/com_example_tesseracttest_OCREngineImp.h \
-  /Users/lshiva/Current/TesseractTest/app/src/main/jni/../../../../tesseract/include/tesseract/baseapi.h \
-  /Users/lshiva/Current/TesseractTest/app/src/main/jni/../../../../tesseract/include/tesseract/tess_version.h \
-  /Users/lshiva/Current/TesseractTest/app/src/main/jni/../../../../tesseract/include/tesseract/apitypes.h \
-  /Users/lshiva/Current/TesseractTest/app/src/main/jni/../../../../tesseract/include/tesseract/publictypes.h \
-  /Users/lshiva/Current/TesseractTest/app/src/main/jni/../../../../tesseract/include/tesseract/pageiterator.h \
-  /Users/lshiva/Current/TesseractTest/app/src/main/jni/../../../../tesseract/include/tesseract/platform.h \
-  /Users/lshiva/Current/TesseractTest/app/src/main/jni/../../../../tesseract/include/tesseract/resultiterator.h \
+  /Users/lshiva/Current/testandroid/tesseracttest/app/src/main/jni/com_example_tesseracttest_OCREngineImp.h \
+  /Users/lshiva/Current/testandroid/tesseracttest/app/src/main/jni/../../../../tesseract/include/tesseract/baseapi.h \
+  /Users/lshiva/Current/testandroid/tesseracttest/app/src/main/jni/../../../../tesseract/include/tesseract/tess_version.h \
+  /Users/lshiva/Current/testandroid/tesseracttest/app/src/main/jni/../../../../tesseract/include/tesseract/apitypes.h \
+  /Users/lshiva/Current/testandroid/tesseracttest/app/src/main/jni/../../../../tesseract/include/tesseract/publictypes.h \
+  /Users/lshiva/Current/testandroid/tesseracttest/app/src/main/jni/../../../../tesseract/include/tesseract/pageiterator.h \
+  /Users/lshiva/Current/testandroid/tesseracttest/app/src/main/jni/../../../../tesseract/include/tesseract/platform.h \
+  /Users/lshiva/Current/testandroid/tesseracttest/app/src/main/jni/../../../../tesseract/include/tesseract/resultiterator.h \
   /Users/lshiva/Library/Android/sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/include/set \
   /Users/lshiva/Library/Android/sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/include/__tree \
   /Users/lshiva/Library/Android/sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/include/__node_handle \
   /Users/lshiva/Library/Android/sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/include/optional \
   /Users/lshiva/Library/Android/sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/include/vector \
   /Users/lshiva/Library/Android/sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/include/__split_buffer \
-  /Users/lshiva/Current/TesseractTest/app/src/main/jni/../../../../tesseract/include/tesseract/ltrresultiterator.h \
-  /Users/lshiva/Current/TesseractTest/app/src/main/jni/../../../../tesseract/include/tesseract/unichar.h \
-  /Users/lshiva/Current/TesseractTest/app/src/main/jni/../../../../tesseract/include/tesseract/serialis.h \
-  /Users/lshiva/Current/TesseractTest/app/src/main/jni/../../../../tesseract/include/tesseract/host.h \
+  /Users/lshiva/Current/testandroid/tesseracttest/app/src/main/jni/../../../../tesseract/include/tesseract/ltrresultiterator.h \
+  /Users/lshiva/Current/testandroid/tesseracttest/app/src/main/jni/../../../../tesseract/include/tesseract/unichar.h \
+  /Users/lshiva/Current/testandroid/tesseracttest/app/src/main/jni/../../../../tesseract/include/tesseract/serialis.h \
+  /Users/lshiva/Current/testandroid/tesseracttest/app/src/main/jni/../../../../tesseract/include/tesseract/host.h \
   /Users/lshiva/Library/Android/sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/include/cinttypes \
   /Users/lshiva/Library/Android/sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/include/inttypes.h \
-  /Users/lshiva/Current/TesseractTest/app/src/main/jni/../../../../tesseract/include/tesseract/tesscallback.h \
-  /Users/lshiva/Current/TesseractTest/app/src/main/jni/../../../../tesseract/include/tesseract/thresholder.h \
-  /Users/lshiva/Current/TesseractTest/app/src/main/jni/../../../../tesseract/include/leptonica/allheaders.h \
-  /Users/lshiva/Current/TesseractTest/app/src/main/jni/../../../../tesseract/include/leptonica/alltypes.h \
-  /Users/lshiva/Current/TesseractTest/app/src/main/jni/../../../../tesseract/include/leptonica/endianness.h \
-  /Users/lshiva/Current/TesseractTest/app/src/main/jni/../../../../tesseract/include/leptonica/environ.h \
-  /Users/lshiva/Current/TesseractTest/app/src/main/jni/../../../../tesseract/include/leptonica/array.h \
-  /Users/lshiva/Current/TesseractTest/app/src/main/jni/../../../../tesseract/include/leptonica/bbuffer.h \
-  /Users/lshiva/Current/TesseractTest/app/src/main/jni/../../../../tesseract/include/leptonica/heap.h \
-  /Users/lshiva/Current/TesseractTest/app/src/main/jni/../../../../tesseract/include/leptonica/list.h \
-  /Users/lshiva/Current/TesseractTest/app/src/main/jni/../../../../tesseract/include/leptonica/ptra.h \
-  /Users/lshiva/Current/TesseractTest/app/src/main/jni/../../../../tesseract/include/leptonica/queue.h \
-  /Users/lshiva/Current/TesseractTest/app/src/main/jni/../../../../tesseract/include/leptonica/rbtree.h \
-  /Users/lshiva/Current/TesseractTest/app/src/main/jni/../../../../tesseract/include/leptonica/stack.h \
-  /Users/lshiva/Current/TesseractTest/app/src/main/jni/../../../../tesseract/include/leptonica/arrayaccess.h \
-  /Users/lshiva/Current/TesseractTest/app/src/main/jni/../../../../tesseract/include/leptonica/bmf.h \
-  /Users/lshiva/Current/TesseractTest/app/src/main/jni/../../../../tesseract/include/leptonica/ccbord.h \
-  /Users/lshiva/Current/TesseractTest/app/src/main/jni/../../../../tesseract/include/leptonica/dewarp.h \
-  /Users/lshiva/Current/TesseractTest/app/src/main/jni/../../../../tesseract/include/leptonica/gplot.h \
-  /Users/lshiva/Current/TesseractTest/app/src/main/jni/../../../../tesseract/include/leptonica/imageio.h \
-  /Users/lshiva/Current/TesseractTest/app/src/main/jni/../../../../tesseract/include/leptonica/jbclass.h \
-  /Users/lshiva/Current/TesseractTest/app/src/main/jni/../../../../tesseract/include/leptonica/morph.h \
-  /Users/lshiva/Current/TesseractTest/app/src/main/jni/../../../../tesseract/include/leptonica/pix.h \
-  /Users/lshiva/Current/TesseractTest/app/src/main/jni/../../../../tesseract/include/leptonica/recog.h \
-  /Users/lshiva/Current/TesseractTest/app/src/main/jni/../../../../tesseract/include/leptonica/regutils.h \
-  /Users/lshiva/Current/TesseractTest/app/src/main/jni/../../../../tesseract/include/leptonica/stringcode.h \
-  /Users/lshiva/Current/TesseractTest/app/src/main/jni/../../../../tesseract/include/leptonica/sudoku.h \
-  /Users/lshiva/Current/TesseractTest/app/src/main/jni/../../../../tesseract/include/leptonica/watershed.h
+  /Users/lshiva/Current/testandroid/tesseracttest/app/src/main/jni/../../../../tesseract/include/tesseract/tesscallback.h \
+  /Users/lshiva/Current/testandroid/tesseracttest/app/src/main/jni/../../../../tesseract/include/tesseract/thresholder.h \
+  /Users/lshiva/Current/testandroid/tesseracttest/app/src/main/jni/../../../../tesseract/include/leptonica/allheaders.h \
+  /Users/lshiva/Current/testandroid/tesseracttest/app/src/main/jni/../../../../tesseract/include/leptonica/alltypes.h \
+  /Users/lshiva/Current/testandroid/tesseracttest/app/src/main/jni/../../../../tesseract/include/leptonica/endianness.h \
+  /Users/lshiva/Current/testandroid/tesseracttest/app/src/main/jni/../../../../tesseract/include/leptonica/environ.h \
+  /Users/lshiva/Current/testandroid/tesseracttest/app/src/main/jni/../../../../tesseract/include/leptonica/array.h \
+  /Users/lshiva/Current/testandroid/tesseracttest/app/src/main/jni/../../../../tesseract/include/leptonica/bbuffer.h \
+  /Users/lshiva/Current/testandroid/tesseracttest/app/src/main/jni/../../../../tesseract/include/leptonica/heap.h \
+  /Users/lshiva/Current/testandroid/tesseracttest/app/src/main/jni/../../../../tesseract/include/leptonica/list.h \
+  /Users/lshiva/Current/testandroid/tesseracttest/app/src/main/jni/../../../../tesseract/include/leptonica/ptra.h \
+  /Users/lshiva/Current/testandroid/tesseracttest/app/src/main/jni/../../../../tesseract/include/leptonica/queue.h \
+  /Users/lshiva/Current/testandroid/tesseracttest/app/src/main/jni/../../../../tesseract/include/leptonica/rbtree.h \
+  /Users/lshiva/Current/testandroid/tesseracttest/app/src/main/jni/../../../../tesseract/include/leptonica/stack.h \
+  /Users/lshiva/Current/testandroid/tesseracttest/app/src/main/jni/../../../../tesseract/include/leptonica/arrayaccess.h \
+  /Users/lshiva/Current/testandroid/tesseracttest/app/src/main/jni/../../../../tesseract/include/leptonica/bmf.h \
+  /Users/lshiva/Current/testandroid/tesseracttest/app/src/main/jni/../../../../tesseract/include/leptonica/ccbord.h \
+  /Users/lshiva/Current/testandroid/tesseracttest/app/src/main/jni/../../../../tesseract/include/leptonica/dewarp.h \
+  /Users/lshiva/Current/testandroid/tesseracttest/app/src/main/jni/../../../../tesseract/include/leptonica/gplot.h \
+  /Users/lshiva/Current/testandroid/tesseracttest/app/src/main/jni/../../../../tesseract/include/leptonica/imageio.h \
+  /Users/lshiva/Current/testandroid/tesseracttest/app/src/main/jni/../../../../tesseract/include/leptonica/jbclass.h \
+  /Users/lshiva/Current/testandroid/tesseracttest/app/src/main/jni/../../../../tesseract/include/leptonica/morph.h \
+  /Users/lshiva/Current/testandroid/tesseracttest/app/src/main/jni/../../../../tesseract/include/leptonica/pix.h \
+  /Users/lshiva/Current/testandroid/tesseracttest/app/src/main/jni/../../../../tesseract/include/leptonica/recog.h \
+  /Users/lshiva/Current/testandroid/tesseracttest/app/src/main/jni/../../../../tesseract/include/leptonica/regutils.h \
+  /Users/lshiva/Current/testandroid/tesseracttest/app/src/main/jni/../../../../tesseract/include/leptonica/stringcode.h \
+  /Users/lshiva/Current/testandroid/tesseracttest/app/src/main/jni/../../../../tesseract/include/leptonica/sudoku.h \
+  /Users/lshiva/Current/testandroid/tesseracttest/app/src/main/jni/../../../../tesseract/include/leptonica/watershed.h
 
 /Users/lshiva/Library/Android/sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/include/iostream:
 
@@ -247,21 +247,21 @@
 
 /Users/lshiva/Library/Android/sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/include/__bit_reference:
 
-/Users/lshiva/Current/TesseractTest/app/src/main/jni/com_example_tesseracttest_OCREngineImp.h:
+/Users/lshiva/Current/testandroid/tesseracttest/app/src/main/jni/com_example_tesseracttest_OCREngineImp.h:
 
-/Users/lshiva/Current/TesseractTest/app/src/main/jni/../../../../tesseract/include/tesseract/baseapi.h:
+/Users/lshiva/Current/testandroid/tesseracttest/app/src/main/jni/../../../../tesseract/include/tesseract/baseapi.h:
 
-/Users/lshiva/Current/TesseractTest/app/src/main/jni/../../../../tesseract/include/tesseract/tess_version.h:
+/Users/lshiva/Current/testandroid/tesseracttest/app/src/main/jni/../../../../tesseract/include/tesseract/tess_version.h:
 
-/Users/lshiva/Current/TesseractTest/app/src/main/jni/../../../../tesseract/include/tesseract/apitypes.h:
+/Users/lshiva/Current/testandroid/tesseracttest/app/src/main/jni/../../../../tesseract/include/tesseract/apitypes.h:
 
-/Users/lshiva/Current/TesseractTest/app/src/main/jni/../../../../tesseract/include/tesseract/publictypes.h:
+/Users/lshiva/Current/testandroid/tesseracttest/app/src/main/jni/../../../../tesseract/include/tesseract/publictypes.h:
 
-/Users/lshiva/Current/TesseractTest/app/src/main/jni/../../../../tesseract/include/tesseract/pageiterator.h:
+/Users/lshiva/Current/testandroid/tesseracttest/app/src/main/jni/../../../../tesseract/include/tesseract/pageiterator.h:
 
-/Users/lshiva/Current/TesseractTest/app/src/main/jni/../../../../tesseract/include/tesseract/platform.h:
+/Users/lshiva/Current/testandroid/tesseracttest/app/src/main/jni/../../../../tesseract/include/tesseract/platform.h:
 
-/Users/lshiva/Current/TesseractTest/app/src/main/jni/../../../../tesseract/include/tesseract/resultiterator.h:
+/Users/lshiva/Current/testandroid/tesseracttest/app/src/main/jni/../../../../tesseract/include/tesseract/resultiterator.h:
 
 /Users/lshiva/Library/Android/sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/include/set:
 
@@ -275,70 +275,70 @@
 
 /Users/lshiva/Library/Android/sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/include/__split_buffer:
 
-/Users/lshiva/Current/TesseractTest/app/src/main/jni/../../../../tesseract/include/tesseract/ltrresultiterator.h:
+/Users/lshiva/Current/testandroid/tesseracttest/app/src/main/jni/../../../../tesseract/include/tesseract/ltrresultiterator.h:
 
-/Users/lshiva/Current/TesseractTest/app/src/main/jni/../../../../tesseract/include/tesseract/unichar.h:
+/Users/lshiva/Current/testandroid/tesseracttest/app/src/main/jni/../../../../tesseract/include/tesseract/unichar.h:
 
-/Users/lshiva/Current/TesseractTest/app/src/main/jni/../../../../tesseract/include/tesseract/serialis.h:
+/Users/lshiva/Current/testandroid/tesseracttest/app/src/main/jni/../../../../tesseract/include/tesseract/serialis.h:
 
-/Users/lshiva/Current/TesseractTest/app/src/main/jni/../../../../tesseract/include/tesseract/host.h:
+/Users/lshiva/Current/testandroid/tesseracttest/app/src/main/jni/../../../../tesseract/include/tesseract/host.h:
 
 /Users/lshiva/Library/Android/sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/include/cinttypes:
 
 /Users/lshiva/Library/Android/sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/include/inttypes.h:
 
-/Users/lshiva/Current/TesseractTest/app/src/main/jni/../../../../tesseract/include/tesseract/tesscallback.h:
+/Users/lshiva/Current/testandroid/tesseracttest/app/src/main/jni/../../../../tesseract/include/tesseract/tesscallback.h:
 
-/Users/lshiva/Current/TesseractTest/app/src/main/jni/../../../../tesseract/include/tesseract/thresholder.h:
+/Users/lshiva/Current/testandroid/tesseracttest/app/src/main/jni/../../../../tesseract/include/tesseract/thresholder.h:
 
-/Users/lshiva/Current/TesseractTest/app/src/main/jni/../../../../tesseract/include/leptonica/allheaders.h:
+/Users/lshiva/Current/testandroid/tesseracttest/app/src/main/jni/../../../../tesseract/include/leptonica/allheaders.h:
 
-/Users/lshiva/Current/TesseractTest/app/src/main/jni/../../../../tesseract/include/leptonica/alltypes.h:
+/Users/lshiva/Current/testandroid/tesseracttest/app/src/main/jni/../../../../tesseract/include/leptonica/alltypes.h:
 
-/Users/lshiva/Current/TesseractTest/app/src/main/jni/../../../../tesseract/include/leptonica/endianness.h:
+/Users/lshiva/Current/testandroid/tesseracttest/app/src/main/jni/../../../../tesseract/include/leptonica/endianness.h:
 
-/Users/lshiva/Current/TesseractTest/app/src/main/jni/../../../../tesseract/include/leptonica/environ.h:
+/Users/lshiva/Current/testandroid/tesseracttest/app/src/main/jni/../../../../tesseract/include/leptonica/environ.h:
 
-/Users/lshiva/Current/TesseractTest/app/src/main/jni/../../../../tesseract/include/leptonica/array.h:
+/Users/lshiva/Current/testandroid/tesseracttest/app/src/main/jni/../../../../tesseract/include/leptonica/array.h:
 
-/Users/lshiva/Current/TesseractTest/app/src/main/jni/../../../../tesseract/include/leptonica/bbuffer.h:
+/Users/lshiva/Current/testandroid/tesseracttest/app/src/main/jni/../../../../tesseract/include/leptonica/bbuffer.h:
 
-/Users/lshiva/Current/TesseractTest/app/src/main/jni/../../../../tesseract/include/leptonica/heap.h:
+/Users/lshiva/Current/testandroid/tesseracttest/app/src/main/jni/../../../../tesseract/include/leptonica/heap.h:
 
-/Users/lshiva/Current/TesseractTest/app/src/main/jni/../../../../tesseract/include/leptonica/list.h:
+/Users/lshiva/Current/testandroid/tesseracttest/app/src/main/jni/../../../../tesseract/include/leptonica/list.h:
 
-/Users/lshiva/Current/TesseractTest/app/src/main/jni/../../../../tesseract/include/leptonica/ptra.h:
+/Users/lshiva/Current/testandroid/tesseracttest/app/src/main/jni/../../../../tesseract/include/leptonica/ptra.h:
 
-/Users/lshiva/Current/TesseractTest/app/src/main/jni/../../../../tesseract/include/leptonica/queue.h:
+/Users/lshiva/Current/testandroid/tesseracttest/app/src/main/jni/../../../../tesseract/include/leptonica/queue.h:
 
-/Users/lshiva/Current/TesseractTest/app/src/main/jni/../../../../tesseract/include/leptonica/rbtree.h:
+/Users/lshiva/Current/testandroid/tesseracttest/app/src/main/jni/../../../../tesseract/include/leptonica/rbtree.h:
 
-/Users/lshiva/Current/TesseractTest/app/src/main/jni/../../../../tesseract/include/leptonica/stack.h:
+/Users/lshiva/Current/testandroid/tesseracttest/app/src/main/jni/../../../../tesseract/include/leptonica/stack.h:
 
-/Users/lshiva/Current/TesseractTest/app/src/main/jni/../../../../tesseract/include/leptonica/arrayaccess.h:
+/Users/lshiva/Current/testandroid/tesseracttest/app/src/main/jni/../../../../tesseract/include/leptonica/arrayaccess.h:
 
-/Users/lshiva/Current/TesseractTest/app/src/main/jni/../../../../tesseract/include/leptonica/bmf.h:
+/Users/lshiva/Current/testandroid/tesseracttest/app/src/main/jni/../../../../tesseract/include/leptonica/bmf.h:
 
-/Users/lshiva/Current/TesseractTest/app/src/main/jni/../../../../tesseract/include/leptonica/ccbord.h:
+/Users/lshiva/Current/testandroid/tesseracttest/app/src/main/jni/../../../../tesseract/include/leptonica/ccbord.h:
 
-/Users/lshiva/Current/TesseractTest/app/src/main/jni/../../../../tesseract/include/leptonica/dewarp.h:
+/Users/lshiva/Current/testandroid/tesseracttest/app/src/main/jni/../../../../tesseract/include/leptonica/dewarp.h:
 
-/Users/lshiva/Current/TesseractTest/app/src/main/jni/../../../../tesseract/include/leptonica/gplot.h:
+/Users/lshiva/Current/testandroid/tesseracttest/app/src/main/jni/../../../../tesseract/include/leptonica/gplot.h:
 
-/Users/lshiva/Current/TesseractTest/app/src/main/jni/../../../../tesseract/include/leptonica/imageio.h:
+/Users/lshiva/Current/testandroid/tesseracttest/app/src/main/jni/../../../../tesseract/include/leptonica/imageio.h:
 
-/Users/lshiva/Current/TesseractTest/app/src/main/jni/../../../../tesseract/include/leptonica/jbclass.h:
+/Users/lshiva/Current/testandroid/tesseracttest/app/src/main/jni/../../../../tesseract/include/leptonica/jbclass.h:
 
-/Users/lshiva/Current/TesseractTest/app/src/main/jni/../../../../tesseract/include/leptonica/morph.h:
+/Users/lshiva/Current/testandroid/tesseracttest/app/src/main/jni/../../../../tesseract/include/leptonica/morph.h:
 
-/Users/lshiva/Current/TesseractTest/app/src/main/jni/../../../../tesseract/include/leptonica/pix.h:
+/Users/lshiva/Current/testandroid/tesseracttest/app/src/main/jni/../../../../tesseract/include/leptonica/pix.h:
 
-/Users/lshiva/Current/TesseractTest/app/src/main/jni/../../../../tesseract/include/leptonica/recog.h:
+/Users/lshiva/Current/testandroid/tesseracttest/app/src/main/jni/../../../../tesseract/include/leptonica/recog.h:
 
-/Users/lshiva/Current/TesseractTest/app/src/main/jni/../../../../tesseract/include/leptonica/regutils.h:
+/Users/lshiva/Current/testandroid/tesseracttest/app/src/main/jni/../../../../tesseract/include/leptonica/regutils.h:
 
-/Users/lshiva/Current/TesseractTest/app/src/main/jni/../../../../tesseract/include/leptonica/stringcode.h:
+/Users/lshiva/Current/testandroid/tesseracttest/app/src/main/jni/../../../../tesseract/include/leptonica/stringcode.h:
 
-/Users/lshiva/Current/TesseractTest/app/src/main/jni/../../../../tesseract/include/leptonica/sudoku.h:
+/Users/lshiva/Current/testandroid/tesseracttest/app/src/main/jni/../../../../tesseract/include/leptonica/sudoku.h:
 
-/Users/lshiva/Current/TesseractTest/app/src/main/jni/../../../../tesseract/include/leptonica/watershed.h:
+/Users/lshiva/Current/testandroid/tesseracttest/app/src/main/jni/../../../../tesseract/include/leptonica/watershed.h:

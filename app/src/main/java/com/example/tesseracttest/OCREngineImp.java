@@ -10,7 +10,6 @@ public class OCREngineImp {
     }
 
     public static String get_recognised_text(Bitmap  bitmap) {
-        Log.d("Textout: ", nativeReadBitmap(bitmap));
         return nativeReadBitmap(bitmap);
     }
 

@@ -45,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
     private static final String DATA_PATH = Environment.getExternalStorageDirectory().toString() + "/tesseracttest/tessdata/";
     private static final String TAG = "java-wrapper";
     private static final String lang = "eng";
+    private  static  final boolean singleImage = true;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -177,13 +179,10 @@ public class MainActivity extends AppCompatActivity {
             byte[] jdata = baos.toByteArray();
             Bitmap bitmap = BitmapFactory.decodeByteArray(jdata, 0, jdata.length);
             Bitmap rotateBitmap = RotateBitmap(bitmap, 90);
-//            // create bitmap image
-//            final String inputText = "test word selva";
-//            final Bitmap bmp = getTextImage(inputText, 640, 480);
-//            Log.d(TAG, "bitmap" + bmp);
-//            String recognizedText = OCREngineImp.get_recognised_text(bmp);
-//            Log.d("RecognisedText", recognizedText);
-
+            if (!singleImage) {
+                String recognizedText = OCREngineImp.get_recognised_text(rotateBitmap);
+                Log.d("RecognisedText", recognizedText);
+            }
             bitmap.recycle();
             baos.reset();
 
@@ -256,27 +255,20 @@ public class MainActivity extends AppCompatActivity {
             Log.e(TAG,"already exists" + fullpath);
             OCREngineImp.ocrEngine(lang, DATA_PATH);
 
-            try {
-                InputStream bitmap=getAssets().open("testImage_1_1.png");
-                Bitmap bit = BitmapFactory.decodeStream(bitmap);
-                // get recognised text
-                String recognizedText = OCREngineImp.get_recognised_text(bit);
-                Log.d("RecognisedText", recognizedText);
-
-            } catch (IOException e1) {
-                // TODO Auto-generated catch block
-                e1.printStackTrace();
+            if (singleImage) {
+                try {
+                    InputStream bitmap = getAssets().open("testImage_1_1.png");
+                    Bitmap bit = BitmapFactory.decodeStream(bitmap);
+                    String recognizedText = OCREngineImp.get_recognised_text(bit);
+                    Log.d("RecognisedText", recognizedText);
+                } catch (IOException e1) {
+                    // TODO Auto-generated catch block
+                    e1.printStackTrace();
+                }
             }
-
-            final String inputText = "test words selva";
-            final Bitmap bmp = getTextImage(inputText, 640, 480);
-            Log.d(TAG, "bitmap" + bmp);
-
-            String recognizedText = OCREngineImp.get_recognised_text(bmp);
-            Log.d("RecognisedText", recognizedText);
-
         }
     }
+
     private static Bitmap getTextImage(String text, int width, int height) {
         final Bitmap bmp = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
 
