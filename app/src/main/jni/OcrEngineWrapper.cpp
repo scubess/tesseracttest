@@ -32,7 +32,7 @@ void JNICALL Java_com_example_tesseracttest_OCREngineImp_engine (JNIEnv *env, jc
         const char *c_lang = env->GetStringUTFChars(language, NULL);
 
         int returnValue =  apiTest->Init(c_dir, c_lang);
-
+        apiTest->SetVariable("tessedit_ocr_engine_mode", "1");
         if (returnValue) {
             syslog(LOG_CRIT, "could not initialise tesseract return value %d: datapath: %s, language: %s", returnValue, c_dir, c_lang);
         } else {
