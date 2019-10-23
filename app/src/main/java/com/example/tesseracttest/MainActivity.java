@@ -182,10 +182,9 @@ public class MainActivity extends AppCompatActivity {
             if (!singleImage) {
                 String recognizedText = OCREngineImp.get_recognised_text(rotateBitmap);
                 Log.d("RecognisedText", recognizedText);
+                bitmap.recycle();
+                baos.reset();
             }
-            bitmap.recycle();
-            baos.reset();
-
         }
     };
 
