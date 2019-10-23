@@ -53,19 +53,19 @@ jstring JNICALL Java_com_example_tesseracttest_OCREngineImp_nativeReadBitmap (JN
     regText = (*env).NewStringUTF("");
 
     if ((ret = AndroidBitmap_getInfo(env, bitmap, &info)) < 0) {
-         syslog(LOG_CRIT, "AndroidBitmap_getInfo() failed! error=%d", ret);
+         syslog(LOG_CRIT, "AndroidBitmap: AndroidBitmap_getInfo() failed! error=%d", ret);
          (*env).ThrowNew((*env).FindClass("java/lang/Exception"), "AndroidBitmap_getInfo() failed.");
         return NULL;
     }
 
     if (info.format != ANDROID_BITMAP_FORMAT_RGBA_8888) {
-        syslog(LOG_CRIT, "Bitmap format is not RGBA_8888=%d", ret);
+        syslog(LOG_CRIT, "AndroidBitmap: Bitmap format is not RGBA_8888=%d", ret);
         (*env).ThrowNew((*env).FindClass("java/lang/Exception"), "Bitmap format is not RGBA_8888.");
         return NULL;
     }
 
     if ((ret = AndroidBitmap_lockPixels(env, bitmap, &pixels)) < 0) {
-          syslog(LOG_CRIT, "AndroidBitmap_lockPixels() failed! error=%d", ret);
+          syslog(LOG_CRIT, "AndroidBitmap: AndroidBitmap_lockPixels() failed! error=%d", ret);
          (*env).ThrowNew((*env).FindClass("java/lang/Exception"), "AndroidBitmap_lockPixels() failed!.");
         return NULL;
     }
@@ -78,11 +78,11 @@ jstring JNICALL Java_com_example_tesseracttest_OCREngineImp_nativeReadBitmap (JN
     size_t size = 4 * pixGetWpl(pixd) * pixGetHeight(pixd);
 
     if (width <= 0 || height <= 0) {
-        syslog(LOG_CRIT, "Pix width and height must be > 0");
+        syslog(LOG_CRIT, "Pix: width and height must be > 0");
         (*env).ThrowNew((*env).FindClass("java/lang/Exception"), "Pix width and height must be > 0");
         return NULL;
     } else if(depth != 1 && depth != 2 && depth != 4 && depth != 8 && depth != 16 && depth != 24 && depth != 32) {
-        syslog(LOG_CRIT, "Depth must be one of 1, 2, 4, 8, 16, or 32");
+        syslog(LOG_CRIT, "Pix: Depth must be one of 1, 2, 4, 8, 16, or 32");
         (*env).ThrowNew((*env).FindClass("java/lang/Exception"), "Depth must be one of 1, 2, 4, 8, 16, or 32");
         return NULL;
     }
@@ -103,12 +103,14 @@ jstring JNICALL Java_com_example_tesseracttest_OCREngineImp_nativeReadBitmap (JN
          l_int32 height = pixGetHeight(pixds);
     }
         try {
+            syslog(LOG_CRIT, "Pix: Width=%d & Height:%d", width, height);
             char *outText;
             regText = (*env).NewStringUTF("");
             apiTest->SetImage(pixds);
-            syslog(LOG_CRIT, "Set Image");
+            syslog(LOG_CRIT, "Tesseract: Set Image for recognition");
 
             try {
+                syslog(LOG_CRIT, "Tesseract: Get UTF Recognition");
                 outText = apiTest->GetUTF8Text();
             }  catch (exception &ecx) {
                 syslog(LOG_CRIT, "GetUTF8Text crash %s", ecx.what());
